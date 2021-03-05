@@ -16,20 +16,20 @@ tput civis
 
 while :
 do
-    typeset -i received_0=0
-    typeset -i received_1=0
+	typeset -i received_0=0
+	typeset -i received_1=0
 
-    for ((i = 1; i < $range; i += 2))
-    do
-        received_0+=$(ifconfig | grep "RX" | awk '{print $5}' | sed -n "$i"p)
-    done
+	for ((i = 1; i < $range; i += 2))
+	do
+		received_0+=$(ifconfig | grep "RX" | awk '{print $5}' | sed -n "$i"p)
+	done
 
-    sleep 1
+	sleep 1
 
-    for ((i = 1; i < $range; i += 2))
-    do
-        received_1+=$(ifconfig | grep "RX" | awk '{print $5}' | sed -n "$i"p)
-    done
+	for ((i = 1; i < $range; i += 2))
+	do
+		received_1+=$(ifconfig | grep "RX" | awk '{print $5}' | sed -n "$i"p)
+	done
     
 	received_total=$((received_1-received_0))
 	
@@ -39,13 +39,13 @@ do
     #done
     
     clear
-    
-    printf "***********************************************************"
-    printf "\n*\n* $(tput bold)$(tput setaf 6)-- CREAMY NETWORK USAGE MONITOR --$(tput sgr0)"
-    printf "\n*\n* Author: BATURALP KIZILTAN [github: @baturalp-kiziltan]\n"
-    printf "***********************************************************\n\n"
-    echo "$(tput bold)Current Network Usage ==>"
-    echo "-------------------------"
+	
+	printf "***********************************************************"
+	printf "\n*\n* $(tput bold)$(tput setaf 6)-- CREAMY NETWORK USAGE MONITOR --$(tput sgr0)"
+	printf "\n*\n* Author: BATURALP KIZILTAN [github: @baturalp-kiziltan]\n"
+	printf "***********************************************************\n\n"
+	echo "$(tput bold)Current Network Usage ==>"
+	echo "-------------------------"
 	printf "\n  * Received (Download): "
 	printf "$(tput setaf 9)$((received_total/1000)) kB/s$(tput sgr0) \n\n\nPress Ctrl+C to exit"
 done
